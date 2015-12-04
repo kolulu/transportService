@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EngineerCodeFirst.ViewModel.BusesOnTour>
+
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<h3>On Tour</h3>
+<table cellpadding="8">
+    <tr>
+        <th>
+            Bus
+        </th>
+        <th>
+            Driver
+        </th>
+        <th>
+            Line
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNum)
+            </td>
+            <td>
+                @item.Driver
+            </td>
+            <td>
+                @item.Line
+            </td>
+        </tr>
+    }
+</table>
