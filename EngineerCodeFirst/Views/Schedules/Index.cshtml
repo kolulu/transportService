@@ -1,30 +1,39 @@
-﻿@model IEnumerable<EngineerCodeFirst.Models.Schedule>
+﻿@model PagedList.IPagedList<EngineerCodeFirst.Models.Schedule>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schedules";
 }
 
-<h2>Index</h2>
+<h2>Schedules</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Schedule", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ScheduleID)
+            Schedule ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Line.Direction)
+            Direction
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Stop.City)
+            City (Stop)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BusOrder)
+            Bus Order
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureTime)
+            Departure Time
         </th>
         <th></th>
     </tr>
@@ -55,3 +64,14 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+new
+{
+    page,
+    sortOrder = ViewBag.CurrentSort,
+    currentFilter =
+        ViewBag.CurrentFilter
+}))

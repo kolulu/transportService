@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using EngineerCodeFirst.DAL;
 using EngineerCodeFirst.Models;
+using PagedList;
 
 namespace EngineerCodeFirst.Controllers
 {
@@ -15,11 +16,54 @@ namespace EngineerCodeFirst.Controllers
     {
         private TransportPublicContext db = new TransportPublicContext();
 
+        /*
         // GET: Stops
         public ActionResult Index()
         {
             return View(db.Stops.ToList());
         }
+        */
+       
+
+        public ViewResult Index(string searchString, string currentFilter, int? page)
+        {
+
+            /*********** Paging ********************/
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            /******************************************/
+
+
+            /*********** Search box ********************/
+            var stops = from s in db.Stops select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                stops = stops.Where(s =>
+                    s.StopName.ToUpper().Contains(searchString.ToUpper())
+                    ||
+                    s.City.ToUpper().Contains(searchString.ToUpper())
+                    );
+            }
+            /******************************************/
+
+            //return View(stops.ToList());
+
+
+            /*********** Paging ********************/
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(stops.OrderBy(i => i.StopID).ToPagedList(pageNumber, pageSize));
+            /******************************************/
+         }
+        
+
 
         // GET: Stops/Details/5
         public ActionResult Details(int? id)

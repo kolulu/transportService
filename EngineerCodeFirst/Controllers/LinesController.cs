@@ -15,10 +15,27 @@ namespace EngineerCodeFirst.Controllers
     {
         private TransportPublicContext db = new TransportPublicContext();
 
+        /*
         // GET: Lines
         public ActionResult Index()
         {
             return View(db.Lines.ToList());
+        }
+        */
+
+        public ViewResult Index(string searchString)
+        {
+            var lines = from l in db.Lines select l;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                lines = lines.Where(l =>
+                    l.LineNumber.ToString().Contains(searchString)
+                    ||
+                    l.Direction.ToUpper().Contains(searchString.ToUpper())
+                    );
+            }
+
+            return View(lines.ToList());
         }
 
         // GET: Lines/Details/5

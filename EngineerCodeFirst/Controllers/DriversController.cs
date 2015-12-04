@@ -17,10 +17,29 @@ namespace EngineerCodeFirst.Controllers
     {
         private TransportPublicContext db = new TransportPublicContext();
 
+        /*
         // GET: Drivers
         public ActionResult Index()
         {
             return View(db.Drivers.ToList());
+        }
+        */
+
+        public ViewResult Index(string searchString)
+        {
+            var drivers = from d in db.Drivers select d;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                drivers = drivers.Where(d =>
+                    d.DriverName.ToUpper().Contains(searchString.ToUpper())
+                    ||
+                    d.DriverSurname.ToUpper().Contains(searchString.ToUpper())
+                    ||
+                    d.DriverLogin.ToUpper().Contains(searchString.ToUpper())
+                    );
+            }
+
+            return View(drivers.ToList());
         }
 
         // GET: Drivers/Details/5

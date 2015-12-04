@@ -27,8 +27,6 @@ namespace EngineerCodeFirst.DAL
                 new Driver{DriverName="Sherlock", DriverSurname="Holmes", Status = "OFF"},
             };
 
-            
-
             drivers.ForEach(s => context.Drivers.Add(s));
             context.SaveChanges();
 
@@ -77,8 +75,32 @@ namespace EngineerCodeFirst.DAL
             };
             stops.ForEach(s => context.Stops.Add(s));
             context.SaveChanges();
-            
 
+
+
+            var schedules = new List<Schedule>
+            {
+                new Schedule{BusOrder = 0, DepartureTime = "15:35:00", LineID = 2, StopID = 18},
+                new Schedule{BusOrder = 1, DepartureTime = "15:39:00", LineID = 2, StopID = 21},
+                new Schedule{BusOrder = 2, DepartureTime = "15:45:00", LineID = 2, StopID = 11},
+                new Schedule{BusOrder = 3, DepartureTime = "15:47:00", LineID = 2, StopID = 10},
+                new Schedule{BusOrder = 4, DepartureTime = "15:59:00", LineID = 2, StopID = 23},
+               
+                new Schedule{BusOrder = 0, DepartureTime = "13:03:00", LineID = 4, StopID = 9},
+                new Schedule{BusOrder = 1, DepartureTime = "13:08:00", LineID = 4, StopID = 10},
+                new Schedule{BusOrder = 2, DepartureTime = "13:12:00", LineID = 4, StopID = 8},
+                new Schedule{BusOrder = 3, DepartureTime = "13:16:00", LineID = 4, StopID = 1},
+
+                new Schedule{BusOrder = 0, DepartureTime = "21:21:00", LineID = 6, StopID = 21},
+                new Schedule{BusOrder = 1, DepartureTime = "21:27:00", LineID = 6, StopID = 9},
+                new Schedule{BusOrder = 2, DepartureTime = "21:29:00", LineID = 6, StopID = 10},
+                new Schedule{BusOrder = 3, DepartureTime = "21:33:00", LineID = 6, StopID = 27},
+                new Schedule{BusOrder = 4, DepartureTime = "21:35:00", LineID = 6, StopID = 28},
+                new Schedule{BusOrder = 5, DepartureTime = "21:50:00", LineID = 6, StopID = 15},
+                new Schedule{BusOrder = 6, DepartureTime = "21:59:00", LineID = 6, StopID = 16},
+            };
+            schedules.ForEach(s => context.Schedules.Add(s));
+            context.SaveChanges();
         }
     }
 }

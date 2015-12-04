@@ -13,7 +13,6 @@ namespace EngineerCodeFirst.Controllers
         private TransportPublicContext db = new TransportPublicContext();
         public ActionResult Index()
         {
-           
             return View();
         }
 

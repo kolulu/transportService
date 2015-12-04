@@ -17,11 +17,27 @@ namespace EngineerCodeFirst.Controllers
     {
         private TransportPublicContext db = new TransportPublicContext();
 
+        /*
         // GET: Buses
         public ActionResult Index()
         {
             return View(db.Buses.ToList());
         }
+        */
+
+        public ViewResult Index(string searchString)
+        {
+            var buses = from b in db.Buses select b;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                buses = buses.Where(b =>
+                    b.RegNum.ToUpper().Contains(searchString.ToUpper())
+                    );
+            }
+
+            return View(buses.ToList());
+        }
+        
 
         // GET: Buses/Details/5
         public ActionResult Details(int? id)
