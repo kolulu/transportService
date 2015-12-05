@@ -17,13 +17,25 @@ namespace EngineerCodeFirst.Models
         public int StopID { get; set; }
         public string City { get; set; }
         public string StopName { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        public string Latitude { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        public string Longitude { get; set; }
+
+        public string GeoLocation
+        {
+            get
+            {
+                return Latitude + ", " + Longitude;
+            }
+        }
 
 	    [Display(Name = "City: Stop")]
         public string StopInfo
         {
             get
             {
-                return City + ": " + StopName;
+                return City + " - " + StopName;
             }
         }
     

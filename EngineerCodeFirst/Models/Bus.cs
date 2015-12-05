@@ -22,7 +22,15 @@ namespace EngineerCodeFirst.Models
         public int BusID { get; set; }
         public string RegNum { get; set; }
         public string Status { get; set; }
-
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string GeoLocation
+        {
+            get
+            {
+                return Latitude + ", " + Longitude;
+            }
+        }
         public virtual ICollection<Line> Lines { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
     }

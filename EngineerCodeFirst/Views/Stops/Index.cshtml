@@ -31,6 +31,9 @@
         <th>
             Stop Name
         </th>
+        <th>
+            Geo location
+        </th>
         <th></th>
     </tr>
 
@@ -44,6 +47,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoLocation)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StopID }) |

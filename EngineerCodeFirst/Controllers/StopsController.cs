@@ -91,7 +91,7 @@ namespace EngineerCodeFirst.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StopID,City,StopName")] Stop stop)
+        public ActionResult Create([Bind(Include = "StopID,City,StopName,Latitude,Longitude")] Stop stop)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace EngineerCodeFirst.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StopID,City,StopName")] Stop stop)
+        public ActionResult Edit([Bind(Include = "StopID,City,StopName,Latitude,Longitude")] Stop stop)
         {
             if (ModelState.IsValid)
             {
@@ -168,5 +168,6 @@ namespace EngineerCodeFirst.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

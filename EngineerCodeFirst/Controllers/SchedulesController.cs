@@ -48,6 +48,12 @@ namespace EngineerCodeFirst.Controllers
                     s.DepartureTime.ToUpper().Contains(searchString.ToUpper())
                     ||
                     s.LineID.ToString().Contains(searchString.ToUpper())
+                    ||
+                    s.Line.Direction.ToUpper().Contains(searchString.ToUpper())
+                    ||
+                    s.Stop.City.ToUpper().Contains(searchString.ToUpper())
+                    ||
+                    s.Stop.StopName.ToUpper().Contains(searchString.ToUpper())
                     );
             }
 

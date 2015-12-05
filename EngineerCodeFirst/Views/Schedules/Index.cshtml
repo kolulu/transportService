@@ -11,7 +11,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "Schedule", FormMethod.Get))
+@using (Html.BeginForm("Index", "Schedules", FormMethod.Get))
 {
     <p>
         Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
@@ -24,7 +24,7 @@
             Schedule ID
         </th>
         <th>
-            Direction
+            Line: Direction
         </th>
         <th>
             City (Stop)
@@ -44,10 +44,10 @@
             @Html.DisplayFor(modelItem => item.ScheduleID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Line.Direction)
+            @Html.DisplayFor(modelItem => item.Line.LineInfo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Stop.City)
+            @Html.DisplayFor(modelItem => item.Stop.StopInfo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BusOrder)
