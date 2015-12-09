@@ -48,10 +48,20 @@
             @Html.DisplayFor(modelItem => item.Direction)
         </td>
         <td>
-            @Html.ListBox("BusID", new SelectList(item.Buses, "BusID", "RegNum"))
+            @{
+                foreach (var bus in item.Buses)
+                {
+                    @bus.RegNum <br />
+                }
+            }
         </td>
         <td>
-            @Html.ListBox("DriverID", new SelectList(item.Drivers, "DriverID", "DriverInfo"))
+            @{
+                foreach (var driver in item.Drivers)
+                {
+                    @driver.DriverInfo <br />
+                }
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.LineID }) |

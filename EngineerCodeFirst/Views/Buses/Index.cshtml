@@ -48,11 +48,23 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ListBox("LineID", new SelectList(item.Lines, "LineID", "LineInfo"))
+            @{
+                foreach (var line in item.Lines)
+                {
+                    @line.LineInfo <br />
+                }
+            }
         </td>
         <td>
-            @Html.ListBox("DriverID", new SelectList(item.Drivers, "DriverID", "DriverInfo"))
+            @{
+                foreach (var driver in item.Drivers)
+                {
+                    @driver.DriverInfo <br />
+                }
+            }
         </td>
+
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.BusID }) |
             @Html.ActionLink("Details", "Details", new { id=item.BusID }) |
