@@ -38,6 +38,7 @@ namespace EngineerCodeFirst.Models
     public class DriverForApp
     {
         //small comment
+        //second small comment
         public int DriverID { get; set; }
         public string DriverName { get; set; }
         public string DriverSurname { get; set; }
